@@ -89,7 +89,8 @@ def bot_message(message):
                              "Мы постоянно наделяем нашего бота новыми знаниями 👨‍🎓 и поэтому просим Вас написать чего ему не хватает?")
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             item1 = types.KeyboardButton('Добавить свои пожелания')
-            markup.add(item1)
+            item2 = types.KeyboardButton('◀️ Назад')
+            markup.add(item1, item2)
             bot.send_message(message.chat.id, '🙈 Не нашли что хотели!?', reply_markup=markup)
         elif message.text == 'Добавить свои пожелания':
             bot.send_message(message.chat.id, 'Напишите, что бы Вы еще хотели увидеть у нашего бота?')
