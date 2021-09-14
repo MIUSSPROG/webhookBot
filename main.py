@@ -90,7 +90,7 @@ def bot_message(message):
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             item1 = types.KeyboardButton('Добавить свои пожелания')
             markup.add(item1)
-            bot.send_message(message.chat.id, '', reply_markup=markup)
+            bot.send_message(message.chat.id, '🙈 Не нашли что хотели!?', reply_markup=markup)
         elif message.text == 'Добавить свои пожелания':
             bot.send_message(message.chat.id, 'Напишите, что бы Вы еще хотели увидеть у нашего бота?')
             bot.register_next_step_handler(message, add_wish)
