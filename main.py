@@ -13,6 +13,7 @@ TOKEN = '1967324593:AAHj6V46s11TddOdpPQEfZGZtpZB5tIY9G8'
 APP_URL = f'https://school2120heroku.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
+# some changes
 
 name = ''
 building = ''
