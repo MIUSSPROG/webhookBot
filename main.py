@@ -255,11 +255,14 @@ def bot_message(message):
         elif message.text == '🗣 Пожелания пользователей':
             user_wishes_json = str(db.reference("telegrambot-7c961-default-rtdb/wishes/").get()).replace("\'", "\"")
             user_wishes_ids = json.loads(user_wishes_json)
+            number = 0
+            bot.send_message(message.chat.id,  f"======>>>> {user_wishes_ids}")
             for id in user_wishes_ids:
                 wish_data_json = str(db.reference(f"telegrambot-7c961-default-rtdb/wishes/{id}").get()).replace("\'", "\"")
                 wish_data = json.loads(wish_data_json)
                 cur_wish = str(wish_data["wish"])
-                bot.send_message(message.chat.id, cur_wish)
+                number += 1
+                bot.send_message(message.chat.id, f'{number}. {cur_wish}')
         elif message.text == '🧾 Список вопросов':
             user_ids_json = str(db.reference("telegrambot-7c961-default-rtdb/").get()).replace("\'", "\"")
             ids = json.loads(user_ids_json)
