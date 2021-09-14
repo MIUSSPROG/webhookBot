@@ -253,8 +253,9 @@ def bot_message(message):
             markup.add(item1, item2, item3)
             bot.send_message(message.chat.id, 'Добро пожаловать в Админ панель!', reply_markup=markup)
         elif message.text == '🗣 Пожелания пользователей':
-            user_wishes_json = str(db.reference("telegrambot-7c961-default-rtdb/wishes/").get()).replace("\'", "\"")
-            if user_wishes_json != '':
+            db_info = db.reference("telegrambot-7c961-default-rtdb/wishes/").get()
+            if db_info is not None:
+                user_wishes_json = str(db_info).replace("\'", "\"")
                 user_wishes_ids = json.loads(user_wishes_json)
                 number = 0
                 for id in user_wishes_ids:
