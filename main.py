@@ -53,7 +53,8 @@ def start(message):
     item6 = types.KeyboardButton('📌 Полезные ссылки')
     item7 = types.KeyboardButton('❓ ЧаВО')
     item8 = types.KeyboardButton('📒 История вопросов')
-    markup.add(item1, item2, item4, item5, item6, item7, item8)
+    item9 = types.KeyboardButton('🙈 Не нашли что хотели!?')
+    markup.add(item1, item2, item4, item5, item6, item7, item8, item9)
     bot.send_message(message.chat.id,
                      'Здравствуйте, <b>{0.first_name}</b>! Выберите интересующий вас раздел =>'.format(message.from_user),
                      reply_markup=markup, parse_mode='html')
@@ -81,6 +82,12 @@ def bot_message(message):
                     cur_answer = 'Ответа пока нет...'
                 bot.send_message(message.chat.id, f'{cur_question}\n<i>{cur_date}</i>\n<b>{cur_answer}</b>', parse_mode='html')
 
+        elif message.text == '🙈 Не нашли что хотели!?':
+            bot.send_message(message.chat.id, "Мы постоянно наделяем нашего бота новыми знаниями 👨‍🎓 и поэтому просим Вас написать чего ему не хватает?")
+            markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+            item1 = types.KeyboardButton('Добавить')
+            markup.add(item1)
+            bot.send_message(message.chat.id, 'Напишите ваши пожелания...', reply_markup=markup)
         elif message.text == '❓ ЧаВО':
             bot.send_message(message.chat.id,
                              '<a href="https://sch2120tn.mskobr.ru/important-answers">Ответы, важные для всех</a>\n',
@@ -293,9 +300,7 @@ def add_question(message):
             "date": d
         }
         db.reference("telegrambot-7c961-default-rtdb/" + uId + "/" + new_question_id).set(new_question)
-        bot.send_message(message.from_user.id, "Ваш вопрос принят в рассмотрение, как только получу на него ответ "
-                                               "сразу "
-                                               "Вас оповещу!")
+        bot.send_message(message.from_user.id, 'Ваш вопрос принят! Вы сможете найти на него ответ в разделе "История вопросов" ')
     else:
         bot.send_message(message.from_user.id, "Ваш вопрос не ясен")
 
