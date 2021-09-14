@@ -242,7 +242,8 @@ def bot_message(message):
             item6 = types.KeyboardButton('📌 Полезные ссылки')
             item7 = types.KeyboardButton('❓ ЧаВО')
             item8 = types.KeyboardButton('📒 История вопросов')
-            markup.add(item1, item2, item4, item5, item6, item7, item8)
+            item9 = types.KeyboardButton('🙈 Не нашли что хотели!?')
+            markup.add(item1, item2, item4, item5, item6, item7, item8, item9)
             bot.send_message(message.chat.id, 'Выберите подходящий пункт =>', reply_markup=markup)
         elif message.text == 'nimdanimda2120!':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
