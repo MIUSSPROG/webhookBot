@@ -23,7 +23,6 @@ question = ''
 questionId = ''
 userId = ''
 
-
 cred = credentials.Certificate("key.json")
 
 default_app = firebase_admin.initialize_app(cred, {
@@ -56,7 +55,8 @@ def start(message):
     item9 = types.KeyboardButton('🙈 Не нашли что хотели!?')
     markup.add(item1, item2, item4, item5, item6, item7, item8, item9)
     bot.send_message(message.chat.id,
-                     'Здравствуйте, <b>{0.first_name}</b>! Выберите интересующий вас раздел =>'.format(message.from_user),
+                     'Здравствуйте, <b>{0.first_name}</b>! Выберите интересующий вас раздел =>'.format(
+                         message.from_user),
                      reply_markup=markup, parse_mode='html')
     # bot.register_next_step_handler(message, reg_name)
 
@@ -73,21 +73,27 @@ def bot_message(message):
             all_questions_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{userId}").get()).replace("\'", "\"")
             question_ids_data = json.loads(all_questions_json)
             for q_id in question_ids_data:
-                question_info_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{userId}/{q_id}").get()).replace("\'", "\"")
+                question_info_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{userId}/{q_id}").get()).replace(
+                    "\'", "\"")
                 question_info_data = json.loads(question_info_json)
                 cur_answer = str(question_info_data["answer"])
                 cur_question = str(question_info_data["question"])
                 cur_date = str(question_info_data["date"])
                 if cur_answer == '':
                     cur_answer = 'Ответа пока нет...'
-                bot.send_message(message.chat.id, f'{cur_question}\n<i>{cur_date}</i>\n<b>{cur_answer}</b>', parse_mode='html')
+                bot.send_message(message.chat.id, f'{cur_question}\n<i>{cur_date}</i>\n<b>{cur_answer}</b>',
+                                 parse_mode='html')
 
         elif message.text == '🙈 Не нашли что хотели!?':
-            bot.send_message(message.chat.id, "Мы постоянно наделяем нашего бота новыми знаниями 👨‍🎓 и поэтому просим Вас написать чего ему не хватает?")
+            bot.send_message(message.chat.id,
+                             "Мы постоянно наделяем нашего бота новыми знаниями 👨‍🎓 и поэтому просим Вас написать чего ему не хватает?")
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-            item1 = types.KeyboardButton('Добавить')
+            item1 = types.KeyboardButton('Добавить свои пожелания')
             markup.add(item1)
-            bot.send_message(message.chat.id, 'Напишите ваши пожелания...', reply_markup=markup)
+            bot.send_message(message.chat.id, '', reply_markup=markup)
+        elif message.text == 'Добавить свои пожелания':
+            bot.send_message(message.chat.id, 'Напишите, что бы Вы еще хотели увидеть у нашего бота?')
+            bot.register_next_step_handler(message, add_wish)
         elif message.text == '❓ ЧаВО':
             bot.send_message(message.chat.id,
                              '<a href="https://sch2120tn.mskobr.ru/important-answers">Ответы, важные для всех</a>\n',
@@ -249,19 +255,23 @@ def bot_message(message):
             try:
                 count_not_answered = 0
                 for uid in ids:
-                    all_questions_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{uid}").get()).replace("\'", "\"")
+                    all_questions_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{uid}").get()).replace("\'",
+                                                                                                                  "\"")
                     question_ids_data = json.loads(all_questions_json)
                     for q_id in question_ids_data:
-                        question_info_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{uid}/{q_id}").get()).replace("\'", "\"")
+                        question_info_json = str(
+                            db.reference(f"telegrambot-7c961-default-rtdb/{uid}/{q_id}").get()).replace("\'", "\"")
                         question_info_data = json.loads(question_info_json)
                         cur_answer = str(question_info_data["answer"])
                         cur_question = str(question_info_data["question"])
                         cur_date = str(question_info_data["date"])
                         if cur_answer == "":
                             keyboard = types.InlineKeyboardMarkup()
-                            key_yes = types.InlineKeyboardButton(text='Ответить', callback_data=f'{str(uid)}&{str(q_id)}')
+                            key_yes = types.InlineKeyboardButton(text='Ответить',
+                                                                 callback_data=f'{str(uid)}&{str(q_id)}')
                             keyboard.add(key_yes)
-                            bot.send_message(message.chat.id, f'<b>{cur_question}</b>\n<i>{cur_date}</i>', reply_markup=keyboard, parse_mode='html')
+                            bot.send_message(message.chat.id, f'<b>{cur_question}</b>\n<i>{cur_date}</i>',
+                                             reply_markup=keyboard, parse_mode='html')
                             count_not_answered += 1
                 if count_not_answered == 0:
                     bot.send_message(message.chat.id, "Нет новых неотвеченных вопросов 🥳")
@@ -270,6 +280,17 @@ def bot_message(message):
 
         else:
             bot.send_message(message.chat.id, 'Выберите интересующий Вас раздел')
+
+
+def add_wish(message):
+    user_wish = str(message.text)
+    new_wish_id = uuid.uuid4().hex
+    new_wish = {
+        "wish": user_wish,
+    }
+    db.reference("telegrambot-7c961-default-rtdb/wishes/" + new_wish_id).set(new_wish)
+    bot.send_message(message.from_user.id,
+                     'Ваш вклад бесценен! 💎 Благодаря Вам мы станем лучше!')
 
 
 def add_question(message):
@@ -300,7 +321,8 @@ def add_question(message):
             "date": d
         }
         db.reference("telegrambot-7c961-default-rtdb/" + uId + "/" + new_question_id).set(new_question)
-        bot.send_message(message.from_user.id, 'Ваш вопрос принят! Вы сможете найти на него ответ в разделе "История вопросов" ')
+        bot.send_message(message.from_user.id,
+                         'Ваш вопрос принят! Вы сможете найти на него ответ в разделе "История вопросов" ')
     else:
         bot.send_message(message.from_user.id, "Ваш вопрос не ясен")
 
@@ -323,7 +345,8 @@ def callback_worker(call):
         # print("questionId ########### " + questionId)
         # questionId = data.split('&')[0]
         # question = data.split('&')[1]
-        question_to_answer_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{userId}/{questionId}").get()).replace("\'", "\"")
+        question_to_answer_json = str(
+            db.reference(f"telegrambot-7c961-default-rtdb/{userId}/{questionId}").get()).replace("\'", "\"")
         question = json.loads(question_to_answer_json)["question"]
         bot.send_message(call.message.chat.id, f"Введите ответ на вопрос:\n<b>{question}</b> => ", parse_mode='html')
         bot.register_next_step_handler(call.message, get_answer)
@@ -364,4 +387,3 @@ def webhook():
 
 if __name__ == '__main__':
     server.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
-
