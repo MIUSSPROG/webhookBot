@@ -69,14 +69,17 @@ def bot_message(message):
             bot.send_message(message.from_user.id, "Напишите свой вопрос...")
             bot.register_next_step_handler(message, add_question)
         elif message.text == '📒 История вопросов':
-            all_questions_json = db.reference("telegrambot-7c961-default-rtdb/" + userId).get()
-            question_list = str(all_questions_json).split('},')
-            for el in question_list:
-                parts = el.split("'")
-                ansToQ = parts[5]
-                if ansToQ == '':
-                    ansToQ = "Ответа пока нет..."
-                bot.send_message(message.chat.id, f'{parts[13]}\n<i>{parts[9]}</i>\n<b>{ansToQ}</b>', parse_mode='html')
+            all_questions_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{userId}").get()).replace("\'", "\"")
+            question_ids_data = json.loads(all_questions_json)
+            for q_id in question_ids_data:
+                question_info_json = str(db.reference(f"telegrambot-7c961-default-rtdb/{userId}/{q_id}").get()).replace("\'", "\"")
+                question_info_data = json.loads(question_info_json)
+                cur_answer = str(question_info_data["answer"])
+                cur_question = str(question_info_data["question"])
+                cur_date = str(question_info_data["date"])
+                if cur_answer == '':
+                    cur_answer = 'Ответа пока нет...'
+                bot.send_message(message.chat.id, f'{cur_question}\n<i>{cur_date}</i>\n<b>{cur_answer}</b>', parse_mode='html')
 
         elif message.text == '❓ ЧаВО':
             bot.send_message(message.chat.id,
