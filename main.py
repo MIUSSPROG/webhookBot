@@ -248,9 +248,18 @@ def bot_message(message):
         elif message.text == 'nimdanimda2120!':
             markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
             item1 = types.KeyboardButton('🧾 Список вопросов')
-            item2 = types.KeyboardButton('◀️ Назад')
-            markup.add(item1, item2)
+            item2 = types.KeyboardButton('🗣 Пожелания пользователей')
+            item3 = types.KeyboardButton('◀️ Назад')
+            markup.add(item1, item2, item3)
             bot.send_message(message.chat.id, 'Добро пожаловать в Админ панель!', reply_markup=markup)
+        elif message.text == '🗣 Пожелания пользователей':
+            user_wishes_json = str(db.reference("telegrambot-7c961-default-rtdb/wishes/").get()).replace("\'", "\"")
+            user_wishes_ids = json.loads(user_wishes_json)
+            for id in user_wishes_ids:
+                wish_data_json = str(db.reference(f"telegrambot-7c961-default-rtdb/wishes/{id}").get()).replace("\'", "\"")
+                wish_data = json.loads(wish_data_json)
+                cur_wish = str(wish_data["wish"])
+                bot.send_message(message.chat.id, cur_wish)
         elif message.text == '🧾 Список вопросов':
             user_ids_json = str(db.reference("telegrambot-7c961-default-rtdb/").get()).replace("\'", "\"")
             ids = json.loads(user_ids_json)
