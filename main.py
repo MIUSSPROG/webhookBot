@@ -98,95 +98,95 @@ def bot_message(message):
         elif message.text == '❓ ЧаВО':
             bot.send_message(message.chat.id,
                              '<a href="https://sch2120tn.mskobr.ru/important-answers">Ответы, важные для всех</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
         elif message.text == '🎓 Получить справку об обучении':
             bot.send_message(message.chat.id,
                              '<a href="https://docs.google.com/forms/d/1Zu0Q18MWmNVp9mYkkV-Bqn6jHAoNZhss2Mcrnn-fVKE'
                              '/viewform?edit_requested=true">Получить справку об обучении</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
         elif message.text == '📌 Полезные ссылки':
             bot.send_message(message.chat.id,
                              '<a href="http://window.edu.ru/">Информационная система "Единое окно доступа к '
                              'образовательным ресурсам"</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="http://fcior.edu.ru/">Федеральный центр информационно-образовательных '
                              'ресурсов</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="http://www.edu.ru/">Федеральный портал «Российское образование»</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://edu.gov.ru/">Министерство образования и науки РФ</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="https://www.mos.ru/uslugi/">Раздел "Услуги и сервисы" на mos.ru</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="http://school-collection.edu.ru/">Единая коллекция цифровых образовательных '
                              'ресурсов</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="https://www.mos.ru/">Официальный сайт Правительства г. Москвы</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://school.moscow/">Школа Большого Города</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://www.mos.ru/donm/">Информационный портал</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://mcko.ru/">Государственное автономное образовательное '
                                               'учреждение дополнительного профессионального образования города Москвы '
-                                              '«Московский центр качества образования»</a>\n ', parse_mode='html')
+                                              '«Московский центр качества образования»</a>\n ', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="https://mcko.ru/pages/center_for_independent_diagnostic_null'
                              '">Центр независимой диагностики</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="http://rcoi.mcko.ru/">Региональный центр обработки информации города Москвы</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/rcoi/contacts/">Горячая линия ГИА</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="http://rcoi.mcko.ru/docs/">Нормативные документы ГИА-11, ГИА-9</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
 
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-11-ege-gve/exam-schedule/">Расписание '
-                                              'ГИА-11</a>\n', parse_mode='html')
+                                              'ГИА-11</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-11-ege-gve/final-composition'
                                               '-presentation/registration-and-conduct/">Итоговое сочинение ('
-                                              'изложение)</a>\n', parse_mode='html')
+                                              'изложение)</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-11-ege-gve/">Информация для '
-                                              'участников ГИА-11</a>\n', parse_mode='html')
+                                              'участников ГИА-11</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-11-ege-gve/special-conditions'
                                               '/">Организация специализированных условий для проведения ГИА-11</a>\n'
-                             , parse_mode='html')
+                             , parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-11-ege-gve/exam-schedule/">Результаты '
-                                              'ГИА и подача апелляций ГИА-11</a>\n', parse_mode='html')
+                                              'ГИА и подача апелляций ГИА-11</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/conflict-commission-gia-11/general'
-                                              '-information/">Конфликтная комиссия ГИА-11</a>\n', parse_mode='html')
+                                              '-information/">Конфликтная комиссия ГИА-11</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-9-oge-gve/examination-schedule'
-                                              '/">Расписание ГИА-9</a>\n', parse_mode='html')
+                                              '/">Расписание ГИА-9</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-9-oge-gve/">Информация для участников '
-                                              'ГИА-9</a>\n', parse_mode='html')
+                                              'ГИА-9</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/gia-9-oge-gve/special-conditions'
                                               '/">Организация специализированных условий ГИА-9</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="http://rcoi.mcko.ru/conflict-commission-gia-9/general'
-                                              '-information/">Конфликтная комиссия ГИА-9</a>\n', parse_mode='html')
+                                              '-information/">Конфликтная комиссия ГИА-9</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://mcko.ru/pages/medalists">Медаль "За особые успехи в '
-                                              'обучении"</a>\n', parse_mode='html')
+                                              'обучении"</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://mcrkpo.ru/%D0%BF%D0%BE%D0%BB%D0%B5%D0%B7%D0%BD%D1%8B'
                                               '%D0%B5%20%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B/">Полезные ссылки '
-                                              'учителям</a>\n', parse_mode='html')
+                                              'учителям</a>\n', parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="https://www.instagram.com/school2120/">Instagram Школа 2120</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="https://www.youtube.com/channel/UCuqRgk0XgHS0UR6oX3rb2Dg">Youtube Школа 2120</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id, '<a href="https://vk.com/sch2120">Vkontakte Школа 2120</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
             bot.send_message(message.chat.id,
                              '<a href="https://www.facebook.com/school2120/">Facebook Школа 2120</a>\n',
-                             parse_mode='html')
+                             parse_mode='html', disable_web_page_preview=True)
 
         elif message.text == '👔 Записаться на прием':
             bot.send_message(message.chat.id,
