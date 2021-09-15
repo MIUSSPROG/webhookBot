@@ -225,7 +225,7 @@ def bot_message(message):
         elif message.text == 'Проблемы с электронным дневником':
             bot.send_message(message.chat.id, 'Мостовая Вера Алексеевна\n<b>+79661878014</b>\n\nГригорьева Ирина Геннадьевна\n<b>+74591233346(доб. 2024)</b>\n\nБоева Анастасия Викторовна\n<b>+79857899668</b>', parse_mode='html')
         elif message.text == 'Прием в школу и группы реализующие программы дошкольного образования':
-            bot.send_message(message.chat.id, 'Соловейчик Екатерина Геннадьевна\n<b>+79857642971</b>')
+            bot.send_message(message.chat.id, 'Соловейчик Екатерина Геннадьевна\n<b>+79857642971</b>', parse_mode='html')
         elif message.text == 'Социальная служба':
             bot.send_message(message.chat.id, 'Синев Юрий Алексеевич\nВремя работы: <i>пн-пт 8:00-17:00</i>\nтел.: '
                                               '<b>+79857899649</b>', parse_mode='html')
