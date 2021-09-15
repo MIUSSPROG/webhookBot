@@ -209,7 +209,7 @@ def bot_message(message):
             item13 = types.KeyboardButton('Проблемы с электронным дневником')
             item14 = types.KeyboardButton('Прием в школу и группы реализующие программы дошкольного образования')
             back = types.KeyboardButton('◀️ Назад')
-            markup.add(item8, item9, item10, item11, item12, item13, item1, item2, item3, item4, item5, item6, item7, back)
+            markup.add(item8, item9, item10, item11, item12, item13, item14, item1, item2, item3, item4, item5, item6, item7, back)
             bot.send_message(message.chat.id, '📞 Контакты администрации', reply_markup=markup)
 
         elif message.text == 'Директор':
