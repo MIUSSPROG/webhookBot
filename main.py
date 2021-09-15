@@ -9,7 +9,7 @@ import uuid
 from datetime import date
 import json
 
-TOKEN = '1992275668:AAH9rsdL0OV84qJhWGnrqJxg4QIyWbRONpA'
+TOKEN = '1967324593:AAHj6V46s11TddOdpPQEfZGZtpZB5tIY9G8'
 # '1967324593:AAHj6V46s11TddOdpPQEfZGZtpZB5tIY9G8'
 APP_URL = f'https://school2120heroku.herokuapp.com/{TOKEN}'
 bot = telebot.TeleBot(TOKEN)
